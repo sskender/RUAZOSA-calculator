@@ -24,12 +24,15 @@ class CalculatorActivity : AppCompatActivity() {
     private var buttonReset: Button? = null
     private var buttonPlus: Button? = null
     private var buttonMinus: Button? = null
+    private var buttonMultiply: Button? = null
+    private var buttonDivide: Button? = null
     private var buttonEvaluate: Button? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator)
+
         buttonReset = findViewById(R.id.button_reset)
         resultView = findViewById(R.id.result_view)
         buttonZero = findViewById(R.id.button_zero)
@@ -45,6 +48,8 @@ class CalculatorActivity : AppCompatActivity() {
         buttonComma = findViewById(R.id.button_comma)
         buttonPlus = findViewById(R.id.button_plus)
         buttonMinus = findViewById(R.id.button_minus)
+        buttonMultiply = findViewById(R.id.button_multiply)
+        buttonDivide = findViewById(R.id.button_divide)
         buttonEvaluate = findViewById(R.id.button_evaluate)
 
         var inOperatorMode = false
@@ -96,6 +101,8 @@ class CalculatorActivity : AppCompatActivity() {
 
         buttonPlus?.setOnClickListener(operatorButtonClicked)
         buttonMinus?.setOnClickListener(operatorButtonClicked)
+        buttonMultiply?.setOnClickListener(operatorButtonClicked)
+        buttonDivide?.setOnClickListener(operatorButtonClicked)
 
         buttonEvaluate?.setOnClickListener {
             if (inOperatorMode) {
