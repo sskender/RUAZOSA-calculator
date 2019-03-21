@@ -15,4 +15,6 @@
     <string name="evaluate_sign">=</string>
     <string name="comma_sign">.</string>
     <string name="reset_sign">C</string>
+    <string name="multiply_sign">*</string>
+    <string name="divide_sign">/</string>
 </resources>

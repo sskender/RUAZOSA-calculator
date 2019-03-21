@@ -92,5 +92,23 @@
             android:text="@string/reset_sign"
             android:textSize="50px"/>
 
+        <Button
+            android:id="@+id/button_multiply"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/multiply_sign"
+            android:textSize="50px" />
 
-    </GridLayout>
+        <Button
+            android:id="@+id/button_divide"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/divide_sign"
+            android:textSize="50px" />
+
+
+</GridLayout>
