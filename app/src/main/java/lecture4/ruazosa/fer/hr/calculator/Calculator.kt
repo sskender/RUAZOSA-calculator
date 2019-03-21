@@ -6,10 +6,10 @@ package lecture4.ruazosa.fer.hr.calculator
 object Calculator {
 
     var result: Double = 0.0
-    private set
+        private set
 
     var expression: MutableList<String> = mutableListOf()
-    private set
+        private set
 
     fun reset() {
         result = 0.0
@@ -23,16 +23,15 @@ object Calculator {
             throw Exception("Not valid number")
         }
 
-        if (expression.count()%2 == 0) {
+        if (expression.count() % 2 == 0) {
             expression.add(number)
-        }
-        else {
+        } else {
             throw Exception("Not a valid order of numbers in expression")
         }
     }
 
     fun addOperator(operator: String) {
-        if (expression.count()%2 != 1)  {
+        if (expression.count() % 2 != 1) {
             throw Exception("Not a valid order of operator in expression")
         }
         when (operator) {
@@ -52,10 +51,10 @@ object Calculator {
 
         result = expression[0].toDouble()
 
-        for(i in 1..expression.count()- 1 step 2) {
-            when(expression[i]) {
-                "+" -> result = result + expression[i+1].toDouble()
-                "-" -> result = result - expression[i+1].toDouble()
+        for (i in 1 until expression.count() - 1 step 2) {
+            when (expression[i]) {
+                "+" -> result += expression[i + 1].toDouble()
+                "-" -> result -= expression[i + 1].toDouble()
             }
         }
     }

@@ -1,7 +1,7 @@
 package lecture4.ruazosa.fer.hr.calculator
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -27,38 +27,36 @@ class CalculatorActivity : AppCompatActivity() {
     private var buttonEvaluate: Button? = null
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator)
         buttonReset = findViewById(R.id.button_reset)
         resultView = findViewById(R.id.result_view)
         buttonZero = findViewById(R.id.button_zero)
-        buttonOne =findViewById(R.id.button_one)
+        buttonOne = findViewById(R.id.button_one)
         buttonTwo = findViewById(R.id.button_two)
-        buttonThree =findViewById(R.id.button_three)
-        buttonFour =findViewById(R.id.button_four)
+        buttonThree = findViewById(R.id.button_three)
+        buttonFour = findViewById(R.id.button_four)
         buttonFive = findViewById(R.id.button_five)
-        buttonSix =findViewById(R.id.button_six)
-        buttonSeven =findViewById(R.id.button_seven)
+        buttonSix = findViewById(R.id.button_six)
+        buttonSeven = findViewById(R.id.button_seven)
         buttonEight = findViewById(R.id.button_eight)
-        buttonNine =findViewById(R.id.button_nine)
-        buttonComma =findViewById(R.id.button_comma)
-        buttonPlus =findViewById(R.id.button_plus)
-        buttonMinus =findViewById(R.id.button_minus)
+        buttonNine = findViewById(R.id.button_nine)
+        buttonComma = findViewById(R.id.button_comma)
+        buttonPlus = findViewById(R.id.button_plus)
+        buttonMinus = findViewById(R.id.button_minus)
         buttonEvaluate = findViewById(R.id.button_evaluate)
 
-        var inOperatorMode: Boolean = false
-        var inResultMode: Boolean = false
+        var inOperatorMode = false
+        var inResultMode = false
 
-        val numericButtonClicked = {view: View ->
+        val numericButtonClicked = { view: View ->
 
             val buttonValue = (view as Button).text.toString()
-            if (!resultView?.text.toString().equals("0") && inOperatorMode == false
-                    && inResultMode == false) {
-                    resultView?.text = resultView?.text.toString() + buttonValue
-            }
-            else {
+            if (resultView?.text.toString() != "0" && !inOperatorMode
+                    && !inResultMode) {
+                resultView?.text = resultView?.text.toString() + buttonValue
+            } else {
                 inOperatorMode = false
                 inResultMode = false
                 resultView?.text = buttonValue
@@ -66,7 +64,7 @@ class CalculatorActivity : AppCompatActivity() {
 
         }
 
-        val operatorButtonClicked = {view: View ->
+        val operatorButtonClicked = { view: View ->
             val buttonValue = (view as Button).text.toString()
             Calculator.addNumber(resultView?.text.toString())
             Calculator.addOperator(buttonValue)
@@ -74,16 +72,16 @@ class CalculatorActivity : AppCompatActivity() {
         }
 
 
-        buttonReset?.setOnClickListener({_ ->
+        buttonReset?.setOnClickListener {
             Calculator.reset()
-            resultView?.setText("0")
-        })
+            resultView?.text = "0"
+        }
 
-        buttonComma?.setOnClickListener({_ ->
+        buttonComma?.setOnClickListener {
             if (!resultView?.text.toString().contains(char = '.')) {
-                resultView?.text = resultView?.text.toString() + ".";
+                resultView?.text = resultView?.text.toString() + R.string.comma_sign;
             }
-        })
+        }
 
         buttonZero?.setOnClickListener(numericButtonClicked)
         buttonOne?.setOnClickListener(numericButtonClicked)
@@ -99,19 +97,18 @@ class CalculatorActivity : AppCompatActivity() {
         buttonPlus?.setOnClickListener(operatorButtonClicked)
         buttonMinus?.setOnClickListener(operatorButtonClicked)
 
-        buttonEvaluate?.setOnClickListener({_ ->
+        buttonEvaluate?.setOnClickListener {
             if (inOperatorMode) {
                 Calculator.addNumber("0")
                 inOperatorMode = false
-            }
-            else {
+            } else {
                 Calculator.addNumber(resultView?.text.toString())
             }
             Calculator.evaluate()
             resultView?.text = Calculator.result.toString()
             inResultMode = true
             Calculator.reset()
-        })
+        }
 
 
     }
