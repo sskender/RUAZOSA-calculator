@@ -71,7 +71,7 @@
 
         <Button
             android:id="@+id/button_evaluate"
-            android:text="@string/equals_sign"
+            android:text="@string/evaluate_sign"
             android:textSize="50px"/>
 
         <Button
@@ -83,7 +83,7 @@
 
         <Button
             android:id="@+id/button_comma"
-            android:text="@string/dot_sign"
+            android:text="@string/comma_sign"
 
             android:textSize="50px"/>
 
