@@ -36,14 +36,11 @@ object Calculator {
         if (expression.count() % 2 != 1) {
             throw Exception("Not a valid order of operator in expression")
         }
-        when (operator) {
-            R.string.plus_sign.toString() -> expression.add(operator)
-            R.string.minus_sign.toString() -> expression.add(operator)
-            R.string.multiply_sign.toString() -> expression.add(operator)
-            R.string.divide_sign.toString() -> expression.add(operator)
-            else -> {
-                throw Exception("Not a valid operator")
-            }
+
+        if (isOperator(operator)) {
+            expression.add(operator)
+        } else {
+            throw Exception("Not a valid operator")
         }
     }
 
@@ -68,23 +65,23 @@ object Calculator {
     // https://www.includehelp.com/c/infix-to-postfix-conversion-using-stack-with-c-program.aspx
 
     private fun isOperator(symbol: String): Boolean {
-        if (symbol == R.string.plus_sign.toString() ||
-                symbol == R.string.minus_sign.toString() ||
-                symbol == R.string.multiply_sign.toString() ||
-                symbol == R.string.divide_sign.toString()) {
+        if (symbol == "+" ||
+                symbol == "-" ||
+                symbol == "*" ||
+                symbol == "/") {
             return true
         }
         return false
     }
 
     private fun precedence(symbol: String): Int {
-        if (symbol == R.string.multiply_sign.toString() ||
-                symbol == R.string.divide_sign.toString()) {
+        if (symbol == "*" ||
+                symbol == "/") {
             return 2
         }
 
-        if (symbol == R.string.plus_sign.toString() ||
-                symbol == R.string.divide_sign.toString()) {
+        if (symbol == "+" ||
+                symbol == "-") {
             return 1
         }
 

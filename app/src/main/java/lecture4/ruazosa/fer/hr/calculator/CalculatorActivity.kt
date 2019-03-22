@@ -84,7 +84,7 @@ class CalculatorActivity : AppCompatActivity() {
 
         buttonComma?.setOnClickListener {
             if (!resultView?.text.toString().contains(char = '.')) {
-                resultView?.text = resultView?.text.toString() + R.string.comma_sign;
+                resultView?.text = resultView?.text.toString() + "."
             }
         }
 
