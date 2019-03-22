@@ -99,4 +99,59 @@ class CalculatorUnitTest {
         Calculator.evaluate()
         Assert.assertEquals(Calculator.result, 0.00, 0.00)
     }
+
+    @Test
+    fun test_evaluate_multiply() {
+        Calculator.reset()
+        Calculator.addNumber("100")
+        Calculator.addOperator("*")
+        Calculator.addNumber("3")
+        Calculator.evaluate()
+        Assert.assertEquals(Calculator.result, 300.0, 0.00)
+
+        Calculator.reset()
+        Calculator.addNumber("20")
+        Calculator.addOperator("*")
+        Calculator.addNumber("3.5")
+        Calculator.evaluate()
+        Assert.assertEquals(Calculator.result, 70.0, 0.00)
+    }
+
+    @Test
+    fun test_evaluate_divide() {
+        Calculator.reset()
+        Calculator.addNumber("20")
+        Calculator.addOperator("/")
+        Calculator.addNumber("2")
+        Calculator.evaluate()
+        Assert.assertEquals(Calculator.result, 10.0, 0.00)
+
+        Calculator.reset()
+        Calculator.addNumber("75")
+        Calculator.addOperator("/")
+        Calculator.addNumber("5")
+        Calculator.evaluate()
+        Assert.assertEquals(Calculator.result, 15.0, 0.00)
+    }
+
+    @Test
+    fun test_evaluate_mix() {
+        Calculator.reset()
+        Calculator.addNumber("2")
+        Calculator.addOperator("+")
+        Calculator.addNumber("3")
+        Calculator.addOperator("*")
+        Calculator.addNumber("5")
+        Calculator.addOperator("-")
+        Calculator.addNumber("6")
+        Calculator.addOperator("/")
+        Calculator.addNumber("2")
+        Calculator.addOperator("-")
+        Calculator.addNumber("1")
+        Calculator.addOperator("+")
+        Calculator.addNumber("3")
+        Calculator.evaluate()
+        Assert.assertEquals(Calculator.result, 16.0, 0.00)
+    }
+
 }
