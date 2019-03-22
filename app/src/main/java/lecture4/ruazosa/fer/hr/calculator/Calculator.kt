@@ -35,8 +35,10 @@ object Calculator {
             throw Exception("Not a valid order of operator in expression")
         }
         when (operator) {
-            "+" -> expression.add(operator)
-            "-" -> expression.add(operator)
+            R.string.plus_sign.toString() -> expression.add(operator)
+            R.string.minus_sign.toString() -> expression.add(operator)
+            R.string.multiply_sign.toString() -> expression.add(operator)
+            R.string.divide_sign.toString() -> expression.add(operator)
             else -> {
                 throw Exception("Not a valid operator")
             }
