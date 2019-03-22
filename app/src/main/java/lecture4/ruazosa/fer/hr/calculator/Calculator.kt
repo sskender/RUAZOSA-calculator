@@ -44,8 +44,8 @@ object Calculator {
         }
     }
 
-    private fun doOperation(value1: Double, value2: Double, symbol: String): Double {
-        when (symbol) {
+    private fun doOperation(value1: Double, value2: Double, operator: String): Double {
+        when (operator) {
             "+" -> return value1 + value2
             "-" -> return value1 - value2
             "*" -> return value1 * value2
@@ -91,14 +91,14 @@ object Calculator {
         return false
     }
 
-    private fun precedence(symbol: String): Int {
-        if (symbol == "*" ||
-                symbol == "/") {
+    private fun precedence(operator: String): Int {
+        if (operator == "*" ||
+                operator == "/") {
             return 2
         }
 
-        if (symbol == "+" ||
-                symbol == "-") {
+        if (operator == "+" ||
+                operator == "-") {
             return 1
         }
 
