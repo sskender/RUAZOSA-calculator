@@ -44,20 +44,37 @@ object Calculator {
         }
     }
 
+    private fun doOperation(value1: Double, value2: Double, symbol: String): Double {
+        when (symbol) {
+            "+" -> return value1 + value2
+            "-" -> return value1 - value2
+            "*" -> return value1 * value2
+            "/" -> return value1 / value2
+        }
+        throw IllegalArgumentException("Invalid operator")
+    }
+
     fun evaluate() {
 
         if (expression.count() % 2 == 0) {
             throw Exception("Not a valid expression")
         }
 
-        result = expression[0].toDouble()
+        val stack: Stack<Double> = Stack()
 
-        for (i in 1 until expression.count() - 1 step 2) {
-            when (expression[i]) {
-                "+" -> result += expression[i + 1].toDouble()
-                "-" -> result -= expression[i + 1].toDouble()
+        convertInfixToPostfix()
+
+        for (symbol in expression) {
+            if (isOperator(symbol)) {
+                val value2: Double = stack.pop()
+                val value1: Double = stack.pop()
+                stack.push(doOperation(value1, value2, symbol))
+            } else {
+                stack.push(symbol.toDouble())
             }
         }
+
+        result = stack.pop()
     }
 
 
