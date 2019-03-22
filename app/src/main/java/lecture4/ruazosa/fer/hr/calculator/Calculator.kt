@@ -1,5 +1,7 @@
 package lecture4.ruazosa.fer.hr.calculator
 
+import java.util.*
+
 /**
  * Created by dejannovak on 24/03/2018.
  */
@@ -60,4 +62,63 @@ object Calculator {
             }
         }
     }
+
+
+    // Algorithm from:
+    // https://www.includehelp.com/c/infix-to-postfix-conversion-using-stack-with-c-program.aspx
+
+    private fun isOperator(symbol: String): Boolean {
+        if (symbol == R.string.plus_sign.toString() ||
+                symbol == R.string.minus_sign.toString() ||
+                symbol == R.string.multiply_sign.toString() ||
+                symbol == R.string.divide_sign.toString()) {
+            return true
+        }
+        return false
+    }
+
+    private fun precedence(symbol: String): Int {
+        if (symbol == R.string.multiply_sign.toString() ||
+                symbol == R.string.divide_sign.toString()) {
+            return 2
+        }
+
+        if (symbol == R.string.plus_sign.toString() ||
+                symbol == R.string.divide_sign.toString()) {
+            return 1
+        }
+
+        return 0
+    }
+
+    private fun convertInfixToPostfix() {
+        // stack for conversion algorithm and
+        // new expression list for postfix values
+        val stack: Stack<String> = Stack()
+        val newExpression: MutableList<String> = mutableListOf()
+
+        for (i in 0 until expression.size) {
+            val symbol = expression[i]
+
+            if (isOperator(symbol)) {
+                // pop and push == peek
+                while (!stack.empty() && isOperator(stack.peek()) && precedence(stack.peek()) >= precedence(symbol)) {
+                    newExpression.add(stack.pop())
+                }
+
+                stack.add(symbol)
+            } else {
+                newExpression.add(symbol)
+            }
+        }
+
+        // add remaining elements to expression list
+        while (!stack.empty()) {
+            newExpression.add(stack.pop())
+        }
+
+        // update expression list
+        expression = newExpression
+    }
+
 }
